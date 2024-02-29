@@ -1,1 +1,9 @@
-maze with more than one starting point
+##########
+#S   #   #
+### ### ##
+# #    # #
+# # ### ##
+# S #   ##
+## ### ###
+#      E##
+##########

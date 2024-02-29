@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gcc code.c -o maze
+gcc mazegame.c -o maze
 
 #loading
 
@@ -44,7 +44,7 @@ fi
 // height of maze too big
 
 echo -n "Testing bad map (height too big) - "
-timeout 0.2s ./maze map/name.txt > out
+timeout 0.2s ./maze map/mazetoobigh.txt > out
 if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
@@ -55,7 +55,7 @@ fi
 // height of maze too small
 
 echo -n "Testing bad map (height too small) - "
-timeout 0.2s ./maze map/name.txt > out
+timeout 0.2s ./maze map/mazetoosmallh.txt > out
 if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
@@ -66,7 +66,7 @@ fi
 // width of maze too big
 
 echo -n "Testing bad map (width too big) - "
-timeout 0.2s ./maze map/name.txt > out
+timeout 0.2s ./maze map/mazetoobigw.txt > out
 if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
@@ -77,7 +77,7 @@ fi
 // width of maze too small
 
 echo -n "Testing bad map (width too small) - "
-timeout 0.2s ./maze map/name.txt > out
+timeout 0.2s ./maze map/mazetoosmallw.txt > out
 if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
@@ -190,11 +190,25 @@ fi
 // test for valid input
 
 echo -n "Test for valid character"
+timeout 0.2s ./maze data/validuserinput.txt > out
+if grep -q "Characters entered successful" out;
+then
+    echo "PASS"
+else 
+    echo "FAIL"
+fi
 
 
 
 // test for valid maze
-
+echo -n "Testing valid maze format- "
+./maze map/validmaze.txt > out
+if grep -q "Correct maze format" out;
+then
+    echo "PASS"
+else 
+    echo "FAIL"
+fi
 
 // test for file loading
 echo -n "Testing file loading - "
@@ -216,8 +230,16 @@ else
     echo "FAIL"
 fi
 
-// test file type of maze
-- only text
+// test different file type of maze
+
+echo -n "Testing invalid file type - "
+timeout 0.2s ./maze data/invalidfile.html > out
+if grep -q "Error : Wrong file format" out;
+then
+    echo "PASS"
+else 
+    echo "FAIL"
+fi
 
 // test whether move hits wall
 
