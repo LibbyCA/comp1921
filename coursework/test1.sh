@@ -215,3 +215,16 @@ then
 else 
     echo "FAIL"
 fi
+
+// test file type of maze
+- only text
+
+// test whether move hits wall
+
+more maps showing wasd with a # in that direction
+
+
+// test whether move goes to space
+success
+
+more maps showing wasd with a ' ' in that direction
