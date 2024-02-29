@@ -42,6 +42,7 @@ void map_maze (){
     // this should print an image of the map of the maze with the players current position
 
 }
+
 int main(int argc, char *argv[]){ //declare arguments
     
     // validation check to ensure no more or less than two arguments are declared by user - argc != 2
