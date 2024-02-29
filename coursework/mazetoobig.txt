@@ -1,0 +1,2 @@
+make maze too big 110 x 20
+another txt file with 40 x 110

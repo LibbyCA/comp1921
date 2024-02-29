@@ -4,21 +4,22 @@ gcc code.c -o maze
 
 #loading
 
-// file has loaded in correctly
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+// user has only entered one file
+
+echo -n "Testing no arguments -"
+./maze  > out
+if grep -q 
 then
     echo "PASS"
-else 
+else
     echo "FAIL"
 fi
 
 // user has only entered one file
 
-echo -n "Testing user inputted a file -"
-./maze x > out
+echo -n "Testing two arguments -"t
+./maze x x > out
 if grep -q 
 then
     echo "PASS"
@@ -31,30 +32,20 @@ fi
 
 echo -n "Testing the file exists -"
 ./maze hypothetical.txt > out
-if grep -q "Error: File doesn't exist" out;
+if grep -q "Error: File not found" out;
 then
     echo "PASS"
 else
     echo "FAIL"
 fi
 
-// input registered
-
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
-then
-    echo "PASS"
-else 
-    echo "FAIL"
-fi
 
 # valid maze
 // height of maze too big
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing bad map (height too big) - "
+timeout 0.2s ./maze map/name.txt > out
+if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
 else 
@@ -63,9 +54,9 @@ fi
 
 // height of maze too small
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing bad map (height too small) - "
+timeout 0.2s ./maze map/name.txt > out
+if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
 else 
@@ -74,9 +65,9 @@ fi
 
 // width of maze too big
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing bad map (width too big) - "
+timeout 0.2s ./maze map/name.txt > out
+if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
 else 
@@ -85,9 +76,9 @@ fi
 
 // width of maze too small
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing bad map (width too small) - "
+timeout 0.2s ./maze map/name.txt > out
+if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
 else 
@@ -96,9 +87,9 @@ fi
 
 // width of every line in maze not the same
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing bad map (rows not all the same size) - "
+timeout 0.2s ./maze map/invalidmaze.txt > out
+if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
 else 
@@ -107,9 +98,9 @@ fi
 
 // height of every line in maze not the same
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing bad map (columns not all the same size) - "
+timeout 0.2s ./maze map/invalidmaze2.txt > out
+if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
 else 
@@ -118,9 +109,9 @@ fi
 
 // characters in maze only # '' S E 
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing bad map (random characters) - "
+timeout 0.2s ./maze map/invalidmaze3.txt > out
+if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
 else 
@@ -129,9 +120,9 @@ fi
 
 // only one E
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing bad map (more than one exit) - "
+timeout 0.2s ./maze map/invalidEmaze.txt > out
+if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
 else 
@@ -140,58 +131,49 @@ fi
 
 // only one S
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing bad map (more than one start) - "
+timeout 0.2s ./maze map/invalidSmaze.txt > out
+if grep -q "Error: Map does not have expected format" out;
 then
     echo "PASS"
 else 
     echo "FAIL"
 fi
 
-#valid input
-// only W A S D M Q
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+// only W A S D M 
+
+echo -n "Testing bad input (random characters) - "
+timeout 0.2s ./maze data/invalidinputs.txt > out
+if grep -q "Error: Input not expected character" out;
 then
     echo "PASS"
 else 
     echo "FAIL"
 fi
 
-// anything else error
+# must input a letter - from amy
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing not-a-letter - "
+echo "8" | ./maze > out
+if grep -q "Error: No letter entered" out;
 then
     echo "PASS"
 else 
     echo "FAIL"
-fi
-
-// input a letter
-
-echo -n "Testing for a letter - "
-# function for input being a letter
-if grep -q "Error: Only a letter can be entered" out;
-then
-    echo "PASS"
-else 
-    echo "FAIL"
+    cat out
 fi
 
 // input single character
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing for multiple characters - "
+echo "ab" |./maze > out
+if grep -q "Error: More than one character entered" out;
 then
     echo "PASS"
 else 
     echo "FAIL"
+    cat out
 fi
 
 # no empty space
@@ -202,5 +184,34 @@ if grep -q "Error: No letter inputted" out;
 then
     echo "PASS"
 else
+    echo "FAIL"
+fi
+
+// test for valid input
+
+echo -n "Test for valid character"
+
+
+
+// test for valid maze
+
+
+// test for file loading
+echo -n "Testing file loading - "
+./maze map/validmaze.txt > out
+if grep -q "File loaded successfully" out;
+then
+    echo "PASS"
+else 
+    echo "FAIL"
+fi
+
+// test for valid maze inputs
+echo -n "Testing valid maze characters - "
+timeout 0.2s ./maze data/validmazeinputs.txt > out
+if grep -q "Maze characters successful" out;
+then
+    echo "PASS"
+else 
     echo "FAIL"
 fi

@@ -1,0 +1,1 @@
+make maze with different number of columns

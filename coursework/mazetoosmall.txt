@@ -1,0 +1,2 @@
+make maze too small 3x4
+another txt file with maze too small 
