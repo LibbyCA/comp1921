@@ -15,6 +15,29 @@ else
     echo "FAIL"
 fi
 
+// user has only entered one file
+
+echo -n "Testing user inputted a file -"
+./maze x > out
+if grep -q 
+then
+    echo "PASS"
+else
+    echo "FAIL"
+fi
+
+
+// file inputted - error when filename is not an option
+
+echo -n "Testing the file exists -"
+./maze hypothetical.txt > out
+if grep -q "Error: File doesn't exist" out;
+then
+    echo "PASS"
+else
+    echo "FAIL"
+fi
+
 // input registered
 
 echo -n "Testing for a single character - "
@@ -151,9 +174,9 @@ fi
 
 // input a letter
 
-echo -n "Testing for a single character - "
-# function for one character
-if grep -q "Error: More than one character inputted" out;
+echo -n "Testing for a letter - "
+# function for input being a letter
+if grep -q "Error: Only a letter can be entered" out;
 then
     echo "PASS"
 else 

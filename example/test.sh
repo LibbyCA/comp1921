@@ -6,9 +6,9 @@ echo -e "~~ Testing Factorials ~~"
 
 echo -n "Testing not-a-number - "
 
-echo "no" | ./factorial > tmp     // store print statement into tmp
+echo "no" | ./factorial > tmp     # store print statement into tmp
 
-if grep -q "Error: No number entered" tmp;   // -q lets you do it quietly so can do if statement
+if grep -q "Error: No number entered" tmp;   # -q lets you do it quietly so can do if statement
 then
     echo "PASS"
 else
