@@ -2,10 +2,9 @@
 
 gcc mazegame.c -o maze
 
-#loading
+echo -e "Argument tests"
 
-
-// user has only entered one file
+# testing no file argument entered
 
 echo -n "Testing no arguments -"
 ./maze  > out
@@ -16,7 +15,7 @@ else
     echo "FAIL"
 fi
 
-// user has only entered one file
+# testing too many file arguments entered
 
 echo -n "Testing two arguments -"t
 ./maze x x > out
@@ -27,8 +26,10 @@ else
     echo "FAIL"
 fi
 
+echo -e "File tests"
 
-// file inputted - error when filename is not an option
+
+# testing when the file doesn't not exist in repository 
 
 echo -n "Testing the file exists -"
 ./maze hypothetical.txt > out
@@ -39,9 +40,20 @@ else
     echo "FAIL"
 fi
 
+# test different file type of maze
 
-# valid maze
-// height of maze too big
+echo -n "Testing invalid file type - "
+timeout 0.2s ./maze data/invalidfile.html > out
+if grep -q "Error : Wrong file format" out;
+then
+    echo "PASS"
+else 
+    echo "FAIL"
+fi
+
+echo -e "Maze tests"
+
+# testing when height of maze too big
 
 echo -n "Testing bad map (height too big) - "
 timeout 0.2s ./maze map/mazetoobigh.txt > out
@@ -52,7 +64,7 @@ else
     echo "FAIL"
 fi
 
-// height of maze too small
+# testing when height of maze is too small
 
 echo -n "Testing bad map (height too small) - "
 timeout 0.2s ./maze map/mazetoosmallh.txt > out
@@ -63,7 +75,7 @@ else
     echo "FAIL"
 fi
 
-// width of maze too big
+# testing when width of maze is too big
 
 echo -n "Testing bad map (width too big) - "
 timeout 0.2s ./maze map/mazetoobigw.txt > out
@@ -74,7 +86,7 @@ else
     echo "FAIL"
 fi
 
-// width of maze too small
+# testing when width of maze is too small
 
 echo -n "Testing bad map (width too small) - "
 timeout 0.2s ./maze map/mazetoosmallw.txt > out
@@ -85,7 +97,7 @@ else
     echo "FAIL"
 fi
 
-// width of every line in maze not the same
+# testing when every row of the maze does not have the same length
 
 echo -n "Testing bad map (rows not all the same size) - "
 timeout 0.2s ./maze map/invalidmaze.txt > out
@@ -96,7 +108,7 @@ else
     echo "FAIL"
 fi
 
-// height of every line in maze not the same
+# testing when every column in the maze is not the same length
 
 echo -n "Testing bad map (columns not all the same size) - "
 timeout 0.2s ./maze map/invalidmaze2.txt > out
@@ -107,7 +119,7 @@ else
     echo "FAIL"
 fi
 
-// characters in maze only # '' S E 
+# testing whether characters in maze only # '' S E 
 
 echo -n "Testing bad map (random characters) - "
 timeout 0.2s ./maze map/invalidmaze3.txt > out
@@ -118,7 +130,7 @@ else
     echo "FAIL"
 fi
 
-// only one E
+# testing whether there is only one E in maze
 
 echo -n "Testing bad map (more than one exit) - "
 timeout 0.2s ./maze map/invalidEmaze.txt > out
@@ -129,7 +141,7 @@ else
     echo "FAIL"
 fi
 
-// only one S
+# testing whether this is only one S in map
 
 echo -n "Testing bad map (more than one start) - "
 timeout 0.2s ./maze map/invalidSmaze.txt > out
@@ -140,8 +152,9 @@ else
     echo "FAIL"
 fi
 
+echo -e "User input tests"
 
-// only W A S D M 
+#testing whether user enters only W A S D M 
 
 echo -n "Testing bad input (random characters) - "
 timeout 0.2s ./maze data/invalidinputs.txt > out
@@ -164,7 +177,7 @@ else
     cat out
 fi
 
-// input single character
+# input only a single character
 
 echo -n "Testing for multiple characters - "
 echo "ab" |./maze > out
@@ -187,7 +200,9 @@ else
     echo "FAIL"
 fi
 
-// test for valid input
+echo -e "Success tests"
+
+# test for valid input from user
 
 echo -n "Test for valid character"
 timeout 0.2s ./maze data/validuserinput.txt > out
@@ -198,9 +213,7 @@ else
     echo "FAIL"
 fi
 
-
-
-// test for valid maze
+# test for valid maze
 echo -n "Testing valid maze format- "
 ./maze map/validmaze.txt > out
 if grep -q "Correct maze format" out;
@@ -210,7 +223,7 @@ else
     echo "FAIL"
 fi
 
-// test for file loading
+# test for file loading
 echo -n "Testing file loading - "
 ./maze map/validmaze.txt > out
 if grep -q "File loaded successfully" out;
@@ -220,7 +233,7 @@ else
     echo "FAIL"
 fi
 
-// test for valid maze inputs
+# test for valid maze inputs
 echo -n "Testing valid maze characters - "
 timeout 0.2s ./maze data/validmazeinputs.txt > out
 if grep -q "Maze characters successful" out;
@@ -230,23 +243,5 @@ else
     echo "FAIL"
 fi
 
-// test different file type of maze
-
-echo -n "Testing invalid file type - "
-timeout 0.2s ./maze data/invalidfile.html > out
-if grep -q "Error : Wrong file format" out;
-then
-    echo "PASS"
-else 
-    echo "FAIL"
-fi
-
-// test whether move hits wall
-
-more maps showing wasd with a # in that direction
 
 
-// test whether move goes to space
-success
-
-more maps showing wasd with a ' ' in that direction
