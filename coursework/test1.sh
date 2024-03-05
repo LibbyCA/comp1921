@@ -4,6 +4,8 @@ gcc mazegame.c -o maze
 
 echo -e "Argument tests"
 
+# tests adapted from Lab -Example Answer from Week 2 Amy Brereton
+
 # testing no file argument entered
 
 echo -n "Testing no arguments -"
